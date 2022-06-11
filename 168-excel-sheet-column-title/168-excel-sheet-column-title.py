@@ -1,6 +1,6 @@
 class Solution:
     def convertToTitle(self, columnNumber: int) -> str:
-        title = ''
+        segments = []
         q = columnNumber
 
         while q > 0:
@@ -10,6 +10,6 @@ class Solution:
                 q -= 1
                 r = 26
 
-            title += chr(64+r)
+            segments.insert(0, chr(64+r))
 
-        return title[::-1]
+        return ''.join(segments)
