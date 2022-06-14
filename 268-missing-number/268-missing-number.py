@@ -1,8 +1,8 @@
 class Solution:
     def missingNumber(self, nums: List[int]) -> int:
-        mask = [False] * (len(nums)+1)
+        n = len(nums)
 
-        for n in nums:
-            mask[n] = True
+        got = sum(nums)
+        expected = int(n * (n+1)/2)
 
-        return mask.index(False)
+        return expected - got
