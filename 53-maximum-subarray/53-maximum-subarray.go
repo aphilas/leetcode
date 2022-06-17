@@ -1,33 +1,23 @@
 func maxSubArray(nums []int) int {
-    best := -10000
-	current := 0
-	neg := true
-	hin := -10000 // Highest negative
-
-	max := func(a, b int) int {
-		if a > b {
-			return a
-		}
-
-		return b
-	}
+    global, local, largest := -10000, 0, -10000
+    
+    max := func (a, b int) int {
+        if a > b {
+            return a
+        }
+        
+        return b
+    }
 
 	for _, n := range nums {
-		if n > 0 {
-			neg = false
-		}
-
-		if neg && n > hin {
-			hin = n
-		}
-
-		current = max(0, current+n)
-		best = max(best, current)
+		local = max(local+n, 0)
+		global = max(local, global)
+		largest = max(largest, n)
 	}
 
-	if neg {
-		return hin
-	} else {
-		return best
+	if global == 0 {
+		global = largest
 	}
+
+	return global
 }
