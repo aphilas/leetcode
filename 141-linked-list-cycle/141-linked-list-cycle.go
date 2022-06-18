@@ -6,12 +6,13 @@
  * }
  */
 func hasCycle(head *ListNode) bool {
-    if head == nil {
+    if head == nil || head.Next == nil {
 		return false
 	}
 
 	// Tortoise and hare
-	t, h := head, head
+	t := head
+	h := head
 
 	for h != nil && h.Next != nil {
 		t = t.Next
