@@ -7,21 +7,18 @@
  */
 func hasCycle(head *ListNode) bool {
     if head == nil {
-        return false
-    }
-    
-    
-    hm := make(map[*ListNode]int)
-	node := head
+		return false
+	}
 
-	for node.Next != nil {
-		hm[node] += 1
+	// Tortoise and hare
+	t, h := head, head
 
-		if hm[node] == 2 {
+	for h != nil && h.Next != nil {
+		t = t.Next
+		h = h.Next.Next
+		if h == t {
 			return true
 		}
-
-		node = node.Next
 	}
 
 	return false
