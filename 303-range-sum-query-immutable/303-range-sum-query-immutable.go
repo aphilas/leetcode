@@ -1,15 +1,22 @@
 type NumArray struct {
-	nums []int
+	acc []int
 }
 
-func (n *NumArray) SumRange(l, r int) int {
-	sum := 0
-	for i := l; i <= r; i++ {
-		sum += n.nums[i]
+func (a *NumArray) SumRange(l, r int) int {
+	if l == 0 {
+		return a.acc[r]
 	}
-	return sum
+
+	return a.acc[r] - a.acc[l-1]
 }
 
 func Constructor(nums []int) NumArray {
-	return NumArray{nums}
+	n := NumArray{make([]int, len(nums))}
+	n.acc[0] = nums[0]
+
+	for i := 1; i < len(nums); i++ {
+		n.acc[i] = n.acc[i-1] + nums[i]
+	}
+
+	return n
 }
