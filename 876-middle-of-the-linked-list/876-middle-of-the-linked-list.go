@@ -8,19 +8,11 @@
 func middleNode(head *ListNode) *ListNode {
     t, h := head, head
 
-	for h != nil {
-		// End of the road
-		if h.Next == nil {
-			return t
-		}
-
-		if h.Next.Next == nil {
-			return t.Next
-		}
-
+	for h != nil && h.Next != nil {
+		// Returns second node if there are two middle nodes
 		t = t.Next
 		h = h.Next.Next
 	}
 
-	return head
+	return t
 }
