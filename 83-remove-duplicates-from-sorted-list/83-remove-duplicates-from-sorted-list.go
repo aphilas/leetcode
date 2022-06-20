@@ -11,13 +11,9 @@ func deleteDuplicates(head *ListNode) *ListNode {
 	}
 
 	curr := head
-	m := make(map[int]struct{})
 
 	for curr.Next != nil {
-		m[curr.Val] = struct{}{}
-
-		// If next has been seen, bypass it
-		if _, ok := m[curr.Next.Val]; ok {
+		if curr.Val == curr.Next.Val {
 			curr.Next = curr.Next.Next
 		} else {
 			curr = curr.Next
