@@ -6,15 +6,15 @@
  * }
  */
 func deleteDuplicates(head *ListNode) *ListNode {
-    curr := head
-
-	for curr != nil && curr.Next != nil {
-		if curr.Val == curr.Next.Val {
-			curr.Next = curr.Next.Next
-		} else {
-			curr = curr.Next
-		}
+    if head == nil || head.Next == nil {
+		return head
 	}
 
-	return head
+	head.Next = deleteDuplicates(head.Next)
+
+	if head.Val == head.Next.Val {
+		return head.Next
+	} else {
+		return head
+	}
 }
