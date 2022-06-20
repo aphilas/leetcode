@@ -5,17 +5,21 @@
  *     Next *ListNode
  * }
  */
-func reverseList(head *ListNode) *ListNode {
-    var prev *ListNode
-	curr := head
+func reverseList(nodes ...(*ListNode)) *ListNode {
+    var prev, head *ListNode
+	
+    head = nodes[0]
 
-	for curr != nil {
-		temp := curr.Next
-		curr.Next = prev
-
-		prev = curr
-		curr = temp
+    if len(nodes) == 2 {
+		prev = nodes[1]
 	}
 
-	return prev
+	if head == nil {
+		return prev
+	}
+
+	tmp := head.Next
+	head.Next = prev
+
+	return reverseList(tmp, head)
 }
