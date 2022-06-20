@@ -6,8 +6,7 @@
  * }
  */
 func mergeTwoLists(a *ListNode, b *ListNode) *ListNode {
-    head := &ListNode{Val: 0, Next: nil}
-	curr := head
+	var head *ListNode
 
 	if a == nil {
 		return b
@@ -17,23 +16,33 @@ func mergeTwoLists(a *ListNode, b *ListNode) *ListNode {
 		return a
 	}
 
+	if a.Val < b.Val {
+		head = a
+		a = a.Next
+	} else {
+		head = b
+		b = b.Next
+	}
+
+	curr := head
+
 	for a != nil && b != nil {
 		if a.Val < b.Val {
 			curr.Next = a
-			curr = a
 			a = a.Next
 		} else {
 			curr.Next = b
-			curr = b
 			b = b.Next
 		}
+
+		curr = curr.Next
 	}
 
-	if a != nil {
-		curr.Next = a
-	} else {
+	if a == nil {
 		curr.Next = b
+	} else {
+		curr.Next = a
 	}
 
-	return head.Next
+	return head
 }
