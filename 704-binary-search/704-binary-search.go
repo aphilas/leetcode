@@ -1,23 +1,17 @@
-func search(nums []int, rest ...int) int {
-    if len(nums) == 0 {
-		return -1
-	}
-    
-    offset := 0
-	target := rest[0]
+func search(nums []int, target int) int {    
+    for lo, hi := 0, len(nums)-1; lo <= hi; {
+		mid := (hi + lo) / 2
 
-	if len(rest) == 2 {
-		offset = rest[1]
+		if nums[mid] == target {
+			return mid
+		} else if nums[mid] < target {
+			// Search right
+			lo = mid + 1
+		} else {
+			// Search left
+			hi = mid - 1
+		}
 	}
 
-	i := len(nums) / 2
-	n := nums[i]
-
-	if n == target {
-		return i + offset
-	} else if n < target {
-		return search(nums[i+1:], target, offset+i+1)
-	} else {
-		return search(nums[:i], target, offset)
-	}
+	return -1
 }
