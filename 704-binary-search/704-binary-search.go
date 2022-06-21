@@ -1,15 +1,11 @@
 func search(nums []int, target int) int {    
     for lo, hi := 0, len(nums)-1; lo <= hi; {
-		mid := (hi + lo) / 2
-
-		if nums[mid] == target {
-			return mid
-		} else if nums[mid] < target {
-			// Search right
-			lo = mid + 1
+		if nums[(hi + lo) / 2] == target {
+			return (hi + lo) / 2
+		} else if nums[(hi + lo) / 2] < target {
+			lo = (hi + lo) / 2 + 1
 		} else {
-			// Search left
-			hi = mid - 1
+			hi = (hi + lo) / 2 - 1
 		}
 	}
 
