@@ -15,5 +15,9 @@ func mergeTrees(a,b *TreeNode) *TreeNode {
 		return a
 	}
 
-	return &TreeNode{Val: a.Val + b.Val, Left: mergeTrees(a.Left, b.Left), Right: mergeTrees(a.Right, b.Right)}
+	a.Val += b.Val
+	a.Left = mergeTrees(a.Left, b.Left)
+	a.Right = mergeTrees(a.Right, b.Right)
+
+	return a
 }
