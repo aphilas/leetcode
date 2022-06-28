@@ -22,7 +22,7 @@ func diameterOfBinaryTree(root *TreeNode) int {
 
 	nodeDiam = func(n *TreeNode) int {
 		if n == nil {
-			return 1
+			return 0
 		}
 
 		l := nodeDiam(n.Left)
@@ -34,5 +34,5 @@ func diameterOfBinaryTree(root *TreeNode) int {
 
 	nodeDiam(root)
 
-	return diam - 2
+	return diam
 }
