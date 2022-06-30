@@ -1,25 +1,28 @@
-func isSubtree(s *TreeNode, t *TreeNode) bool {
-    if isSameTree(s, t) {
-        return true
-    }
-    if s == nil {
-        return false
-    }
-    if isSubtree(s.Left, t) || isSubtree(s.Right, t) {
-        return true
-    }
-    return false
+func Equal(a, b *TreeNode) bool {
+    if a == nil && b == nil {
+		return true
+	}
+
+	if a == nil || b == nil {
+		return false
+	}
+
+	if a.Val != b.Val {
+		return false
+	}
+
+	return Equal(a.Left, b.Left) && Equal(a.Right, b.Right)
 }
 
-func isSameTree(t1 *TreeNode, t2 *TreeNode) bool {
-    if t1 == nil && t2 == nil {
-        return true
-    }
-    if t1 == nil || t2 == nil {
+
+func isSubtree(r, s *TreeNode) bool {
+    if Equal(r, s) {
+		return true
+	}
+    
+    if r == nil {
         return false
     }
-    if t1.Val != t2.Val {
-        return false
-    }
-    return isSameTree(t1.Left, t2.Left) && isSameTree(t1.Right, t2.Right)
+
+	return isSubtree(r.Left, s) || isSubtree(r.Right, s)
 }
