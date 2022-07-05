@@ -1,16 +1,17 @@
 func majorityElement(nums []int) int {
-    l := len(nums) / 2
-	m := make(map[int]int)
+    var cand, count int
 
-	for _, n := range nums {
-		m[n] += 1
-	}
+	for _, num := range nums {
+		if count == 0 {
+			cand = num
+		}
 
-	for k, v := range m {
-		if v > l {
-			return k
+		if num == cand {
+			count += 1
+		} else {
+			count -= 1
 		}
 	}
 
-	return 0
+	return cand
 }
